@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+:root {
+  --zoom-scale: 1;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: 'Outfit', system-ui, sans-serif;
+}
+
+.font-mono-num {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.math-expr {
+  font-family: 'Lora', 'Times New Roman', Times, serif;
+  letter-spacing: 0.015em;
+}
+
+.math-expr sup {
+  font-size: 0.68em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  top: -0.45em;
+}
+
+/* Classroom projector zoom scaling */
+.scalable-title {
+  font-size: calc(1.3rem * var(--zoom-scale));
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.scalable-option {
+  font-size: calc(1.125rem * var(--zoom-scale));
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.scalable-explanation {
+  font-size: calc(0.95rem * var(--zoom-scale));
+  line-height: 1.55;
+}
+
+.scalable-hint {
+  font-size: calc(0.9rem * var(--zoom-scale));
+  line-height: 1.45;
+}
+
+/* Subtle chalkboard architectural grid pattern */
+.chalkboard-grid {
+  background-color: #0b201b;
+  background-image:
+    radial-gradient(circle at 75% 25%, rgba(217, 119, 6, 0.11), transparent 48%),
+    radial-gradient(circle at 15% 80%, rgba(16, 185, 129, 0.09), transparent 45%),
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+}
+
+/* Compositor-only animations */
+@keyframes popIn {
+  0% {
+    transform: scale(0.94);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-pop-in {
+  animation: popIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes shakeX {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-7px); }
+  40%, 80% { transform: translateX(7px); }
+}
+
+.animate-shake-x {
+  animation: shakeX 0.32s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes ambientDrift {
+  0%, 100% { transform: scale(1.03) translate3d(0, 0, 0); }
+  50% { transform: scale(1.06) translate3d(-1%, -0.5%, 0); }
+}
+
+.animate-ambient-drift {
+  animation: ambientDrift 24s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-pop-in,
+  .animate-shake-x,
+  .animate-ambient-drift {
+    animation: none !important;
+  }
+}

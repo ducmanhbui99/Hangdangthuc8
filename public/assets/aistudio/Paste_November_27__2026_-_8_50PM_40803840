@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinh Phục 7 Hằng Đẳng Thức Đáng Nhớ - Thầy Bùi Đức Mạnh</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti cho hiệu ứng chúc mừng -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts: Nunito & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --zoom-scale: 1;
+        }
+
+        body {
+            font-family: 'Nunito', 'Inter', sans-serif;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        /* Hiệu ứng chữ toán học chuẩn */
+        .math-expr {
+            font-family: 'Times New Roman', Times, serif;
+            letter-spacing: 0.02em;
+        }
+        .math-expr sup {
+            font-size: 0.68em;
+            line-height: 0;
+            position: relative;
+            vertical-align: baseline;
+            top: -0.45em;
+        }
+
+        /* Hệ thống Zoom thông minh chống tràn & mất chữ */
+        .scalable-title {
+            font-size: calc(1.25rem * var(--zoom-scale));
+            line-height: 1.45;
+            word-break: break-word;
+        }
+        .scalable-option {
+            font-size: calc(1.1rem * var(--zoom-scale));
+            line-height: 1.4;
+            word-break: break-word;
+        }
+        .scalable-explanation {
+            font-size: calc(0.95rem * var(--zoom-scale));
+            line-height: 1.5;
+        }
+        .scalable-badge {
+            font-size: calc(0.8rem * var(--zoom-scale));
+        }
+
+        /* Animations */
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            70% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-pop {
+            animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+        .animate-shake {
+            animation: shake 0.4s ease-in-out;
+        }
+
+        @keyframes bounceCelebration {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.12); }
+        }
+        .animate-celebrate {
+            animation: bounceCelebration 0.6s ease infinite;
+        }
+
+        .option-btn {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .option-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -4px rgba(79, 70, 229, 0.25);
+        }
+        .option-btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        /* Tùy chỉnh thanh cuộn */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.45);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+    <!-- THANH CÔNG CỤ TRÊN CÙNG (Ghim cố định để luôn bấm Zoom & Xem danh sách được) -->
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md text-white px-3 py-2.5 shadow-lg border-b border-white/10">
+        <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <!-- Logo & Tên tác giả -->
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-400 to-orange-500 flex items-center justify-center text-slate-900 font-black text-lg shadow">
+                    7
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-sm sm:text-base leading-tight text-amber-300">7 HẰNG ĐẲNG THỨC ĐÁNG NHỚ</h1>
+                    <p class="text-xs text-slate-300 font-semibold">Thực hiện bởi <span class="text-white font-bold">Thầy Bùi Đức Mạnh</span></p>
+                </div>
+            </div>
+
+            <!-- Bộ điều khiển Zoom (Phóng to chữ cho học sinh ngồi xa) -->
+            <div class="flex items-center gap-1.5 bg-slate-800 px-2.5 py-1 rounded-xl border border-slate-700" title="Phóng to / Thu nhỏ cỡ chữ cho học sinh ngồi xa">
+                <span class="text-xs text-slate-300 hidden md:inline font-bold mr-1"><i class="fa-solid fa-magnifying-glass"></i> Cỡ chữ:</span>
+                <button onclick="changeZoom(-0.15)" class="w-8 h-8 rounded-lg bg-slate-700 hover:bg-slate-600 active:bg-slate-500 flex items-center justify-center font-black text-base transition" title="Thu nhỏ chữ">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+                <span id="zoom-level-text" class="px-2 text-xs sm:text-sm font-extrabold text-amber-300 min-w-[3.2rem] text-center">100%</span>
+                <button onclick="changeZoom(0.15)" class="w-8 h-8 rounded-lg bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-400 flex items-center justify-center font-black text-base transition" title="Phóng to chữ">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+                <button onclick="resetZoom()" class="px-2 py-1 rounded-lg bg-slate-700 hover:bg-slate-600 text-xs font-bold ml-0.5 transition" title="Mặc định 100%">
+                    100%
+                </button>
+            </div>
+
+            <!-- Các nút tiện ích: Âm thanh, Bảng xếp hạng / Google Sheet -->
+            <div class="flex items-center gap-2">
+                <button onclick="openLeaderboardModal()" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm flex items-center gap-1.5 shadow transition">
+                    <i class="fa-solid fa-ranking-star"></i>
+                    <span class="hidden sm:inline">Bảng xếp hạng</span>
+                    <span id="record-count-badge" class="bg-white text-emerald-800 text-xs font-black px-1.5 py-0.2 rounded-full">0</span>
+                </button>
+                <button onclick="openSheetSettingsModal()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-sky-400 transition" title="Cấu hình đồng bộ Google Sheet">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+                <button id="sound-toggle-btn" onclick="toggleSound()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-amber-400 transition" title="Bật/Tắt âm thanh">
+                    <i id="sound-icon" class="fa-solid fa-volume-high"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- NỘI DUNG CHÍNH -->
+    <main class="flex-1 flex items-center justify-center p-3 sm:p-5">
+        
+        <!-- 1. MÀN HÌNH BẮT ĐẦU (NHẬP TÊN HỌC SINH) -->
+        <div id="start-screen" class="w-full max-w-2xl bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl p-6 sm:p-8 border-4 border-white/50 animate-pop">
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-100 text-indigo-800 font-extrabold text-xs sm:text-sm mb-3">
+                    <span>🎓 Toán Lớp 8</span>
+                    <span>•</span>
+                    <span>Thực hiện bởi Thầy Bùi Đức Mạnh</span>
+                </div>
+                <h2 class="text-2xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 mb-2">
+                    ĐẤU TRƯỜNG HẰNG ĐẲNG THỨC
+                </h2>
+                <p class="text-slate-600 font-semibold text-sm sm:text-base">
+                    Ôn tập chiều xuôi & chiều ngược 7 hằng đẳng thức đáng nhớ
+                </p>
+            </div>
+
+            <!-- Thống kê cấu trúc đề -->
+            <div class="grid grid-cols-3 gap-2.5 sm:gap-4 mb-6 text-center">
+                <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-3">
+                    <div class="text-xl sm:text-2xl font-black text-emerald-600">10 Câu</div>
+                    <div class="text-xs sm:text-sm font-bold text-emerald-800">Nhận biết</div>
+                    <div class="text-[11px] text-emerald-600 mt-0.5">Công thức xuôi & ngược</div>
+                </div>
+                <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3">
+                    <div class="text-xl sm:text-2xl font-black text-amber-600">6 Câu</div>
+                    <div class="text-xs sm:text-sm font-bold text-amber-800">Thông hiểu</div>
+                    <div class="text-[11px] text-amber-600 mt-0.5">Áp dụng biến cơ bản x</div>
+                </div>
+                <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-3">
+                    <div class="text-xl sm:text-2xl font-black text-rose-600">4 Câu</div>
+                    <div class="text-xs sm:text-sm font-bold text-rose-800">Vận dụng</div>
+                    <div class="text-[11px] text-rose-600 mt-0.5">Rút gọn biểu thức (2x)</div>
+                </div>
+            </div>
+
+            <!-- Form nhập thông tin học sinh -->
+            <div class="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200 mb-6 space-y-3.5">
+                <div>
+                    <label for="student-name-input" class="block text-sm font-extrabold text-slate-700 mb-1">
+                        <i class="fa-solid fa-user-graduate text-indigo-600 mr-1"></i> Họ và tên học sinh <span class="text-rose-500">*</span>
+                    </label>
+                    <input type="text" id="student-name-input" placeholder="Ví dụ: Nguyễn Văn An..." 
+                        class="w-full px-4 py-3 rounded-xl border-2 border-slate-300 focus:border-indigo-500 focus:outline-none font-bold text-base sm:text-lg text-slate-800 transition"
+                        onkeypress="if(event.key === 'Enter') startGame()">
+                </div>
+                <div>
+                    <label for="student-class-input" class="block text-sm font-extrabold text-slate-700 mb-1">
+                        <i class="fa-solid fa-users text-purple-600 mr-1"></i> Lớp / Tổ
+                    </label>
+                    <input type="text" id="student-class-input" placeholder="Ví dụ: 8A1 (hoặc Tổ 1)" value="8A"
+                        class="w-full px-4 py-2.5 rounded-xl border-2 border-slate-300 focus:border-indigo-500 focus:outline-none font-bold text-base text-slate-800 transition"
+                        onkeypress="if(event.key === 'Enter') startGame()">
+                </div>
+                <p id="name-error-msg" class="hidden text-rose-600 text-sm font-bold">
+                    <i class="fa-solid fa-circle-exclamation"></i> Em vui lòng nhập Họ và tên trước khi bắt đầu nhé!
+                </p>
+            </div>
+
+            <button onclick="startGame()" class="w-full py-4 rounded-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white font-black text-lg sm:text-xl shadow-xl shadow-indigo-500/30 transform hover:-translate-y-0.5 active:translate-y-0 transition flex items-center justify-center gap-3">
+                <i class="fa-solid fa-play"></i> BẮT ĐẦU CHINH PHỤC (20 CÂU)
+            </button>
+        </div>
+
+        <!-- 2. MÀN HÌNH CHƠI TRẮC NGHIỆM (TỐI ƯU 1 MÀN HÌNH + ZOOM LINH HOẠT) -->
+        <div id="quiz-screen" class="hidden w-full max-w-5xl bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl p-4 sm:p-6 border-4 border-white/50 flex-col gap-4">
+            
+            <!-- Thanh trạng thái học sinh, tiến độ, đồng hồ & điểm số -->
+            <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
+                <div class="flex items-center gap-2 flex-wrap">
+                    <span class="px-3 py-1 rounded-xl bg-indigo-100 text-indigo-800 font-extrabold text-xs sm:text-sm">
+                        <i class="fa-solid fa-user"></i> <span id="display-student-info">Học sinh</span>
+                    </span>
+                    <span id="level-badge" class="scalable-badge px-3 py-1 rounded-xl font-extrabold bg-emerald-100 text-emerald-800">
+                        Nhận biết
+                    </span>
+                </div>
+
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <div id="streak-box" class="hidden items-center gap-1 bg-orange-100 text-orange-700 border border-orange-300 px-3 py-1 rounded-xl font-extrabold text-sm">
+                        <span>🔥</span> <span id="streak-count">0</span>
+                    </div>
+                    <div class="bg-sky-100 text-sky-900 border border-sky-300 px-3 py-1.5 rounded-xl font-black text-sm sm:text-base flex items-center gap-1.5" title="Thời gian làm bài">
+                        <i class="fa-solid fa-stopwatch text-sky-600"></i>
+                        <span id="timer-display">00:00</span>
+                    </div>
+                    <div class="bg-amber-100 text-amber-900 border border-amber-300 px-3.5 py-1.5 rounded-xl font-black text-sm sm:text-base flex items-center gap-1.5">
+                        <i class="fa-solid fa-star text-amber-500"></i>
+                        <span id="score-display">0</span> điểm
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thanh tiến trình 20 câu -->
+            <div>
+                <div class="flex justify-between text-xs sm:text-sm font-extrabold text-slate-600 mb-1">
+                    <span>Câu hỏi <span id="current-q-num" class="text-indigo-600 text-base">1</span> / 20</span>
+                    <span id="progress-percent">5%</span>
+                </div>
+                <div class="w-full h-3 bg-slate-200 rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full transition-all duration-300" style="width: 5%"></div>
+                </div>
+            </div>
+
+            <!-- Khung câu hỏi -->
+            <div class="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 border-2 border-indigo-200 rounded-2xl p-4 sm:p-6 shadow-inner">
+                <div id="question-text" class="scalable-title font-extrabold text-slate-900 text-center">
+                    <!-- Nội dung câu hỏi render bằng JS -->
+                </div>
+            </div>
+
+            <!-- Khung 4 phương án trả lời (Tự động chuyển 1 cột khi Zoom lớn để không mất chữ) -->
+            <div id="options-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+                <!-- 4 nút đáp án render bằng JS -->
+            </div>
+
+            <!-- Khu vực phản hồi, Sticker chúc mừng & Lời giải chi tiết -->
+            <div id="feedback-box" class="hidden rounded-2xl p-4 border-2 transition-all">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <div class="flex items-center gap-3 text-center sm:text-left">
+                        <div id="feedback-sticker" class="text-4xl sm:text-5xl animate-celebrate select-none">🎉</div>
+                        <div>
+                            <h4 id="feedback-title" class="font-black text-base sm:text-lg">Chính xác tuyệt vời!</h4>
+                            <p id="feedback-explanation" class="scalable-explanation text-slate-700 font-semibold mt-0.5"></p>
+                        </div>
+                    </div>
+                    <button id="next-btn" onclick="nextQuestion()" class="w-full sm:w-auto shrink-0 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-black text-base shadow-lg transition flex items-center justify-center gap-2">
+                        <span>Câu tiếp theo</span> <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 3. MÀN HÌNH TỔNG KẾT & BẢNG XẾP HẠNG -->
+        <div id="result-screen" class="hidden w-full max-w-3xl bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl p-6 sm:p-8 border-4 border-white/50 text-center animate-pop">
+            <div id="result-trophy" class="text-6xl sm:text-7xl mb-2 animate-celebrate inline-block">🏆</div>
+            <h2 id="result-title" class="text-2xl sm:text-3xl font-black text-indigo-900 mb-1">HOÀN THÀNH XUẤT SẮC!</h2>
+            <p id="result-student-name" class="text-base sm:text-lg font-extrabold text-purple-700 mb-3">Học sinh: ...</p>
+
+            <!-- Thông báo trạng thái lưu & đồng bộ Google Sheet -->
+            <div id="sync-status-banner" class="mb-4 px-4 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm font-bold inline-flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                <span>Đã lưu kết quả vào Bảng xếp hạng!</span>
+            </div>
+
+            <!-- Bảng điểm tổng hợp -->
+            <div class="grid grid-cols-3 gap-3 mb-4">
+                <div class="bg-indigo-50 border-2 border-indigo-200 rounded-2xl p-3">
+                    <div class="text-xs font-bold text-indigo-600 uppercase">Tổng điểm</div>
+                    <div id="final-score" class="text-2xl sm:text-3xl font-black text-indigo-900">0</div>
+                </div>
+                <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-3">
+                    <div class="text-xs font-bold text-emerald-600 uppercase">Số câu đúng</div>
+                    <div id="final-correct" class="text-2xl sm:text-3xl font-black text-emerald-700">0/20</div>
+                </div>
+                <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-3">
+                    <div class="text-xs font-bold text-amber-600 uppercase">Chuỗi đúng</div>
+                    <div id="final-streak" class="text-2xl sm:text-3xl font-black text-amber-600">0 🔥</div>
+                </div>
+            </div>
+
+            <!-- Chi tiết từng mức độ & thời gian -->
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 mb-5 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm font-bold">
+                <div class="text-sky-700">Thời gian: <span id="stat-time" class="font-black">00:00</span></div>
+                <div class="text-emerald-700">Nhận biết: <span id="stat-nb" class="font-black">0/10</span></div>
+                <div class="text-amber-700">Thông hiểu: <span id="stat-th" class="font-black">0/6</span></div>
+                <div class="text-rose-700">Vận dụng: <span id="stat-vd" class="font-black">0/4</span></div>
+            </div>
+
+            <!-- BẢNG XẾP HẠNG TRỰC TIẾP NGAY SAU KHI CHƠI XONG -->
+            <div class="bg-gradient-to-b from-amber-50 to-white border-2 border-amber-200 rounded-2xl p-4 mb-6 text-left shadow-inner">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <h3 class="font-black text-amber-900 text-base sm:text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-ranking-star text-amber-500"></i> BẢNG XẾP HẠNG LỚP (Đúng nhiều &rarr; Nhanh nhất)
+                    </h3>
+                    <button onclick="copyZaloReport()" class="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs sm:text-sm flex items-center gap-1.5 shadow transition">
+                        <i class="fa-solid fa-share-nodes"></i> Copy tin nhắn gửi Zalo Phụ huynh
+                    </button>
+                </div>
+                <div class="overflow-x-auto max-h-56 overflow-y-auto rounded-xl border border-amber-200 bg-white">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                        <thead class="bg-amber-100/80 text-amber-950 font-extrabold sticky top-0">
+                            <tr>
+                                <th class="p-2.5 text-center w-14">Hạng</th>
+                                <th class="p-2.5">Họ và Tên</th>
+                                <th class="p-2.5">Lớp</th>
+                                <th class="p-2.5 text-center">Số câu đúng</th>
+                                <th class="p-2.5 text-center">Thời gian</th>
+                            </tr>
+                        </thead>
+                        <tbody id="result-ranking-tbody" class="divide-y divide-amber-100 font-bold text-slate-700">
+                            <!-- Render tự động -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="result-toast-notify" class="hidden mt-2 text-center text-xs sm:text-sm font-extrabold text-blue-700 bg-blue-100 py-1.5 rounded-xl"></div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <button onclick="backToStartForNextStudent()" class="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-black text-base shadow-lg transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-user-plus"></i> Lượt học sinh tiếp theo
+                </button>
+                <button onclick="openLeaderboardModal()" class="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-black text-base shadow-lg transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-file-excel"></i> Xuất Google Sheet
+                </button>
+                <button onclick="restartSameStudent()" class="w-full sm:w-auto px-5 py-3.5 rounded-2xl bg-slate-200 hover:bg-slate-300 text-slate-800 font-extrabold text-base transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-rotate-right"></i> Làm lại
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- CHÂN TRANG -->
+    <footer class="text-center text-white/85 text-xs sm:text-sm py-2.5 px-4 font-semibold">
+        © Sản phẩm dạy học số Toán 8 — <span class="font-extrabold text-amber-300">Thực hiện bởi Thầy Bùi Đức Mạnh</span>
+    </footer>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL 1: BẢNG XẾP HẠNG & XUẤT GOOGLE SHEET -->
+    <!-- ===================================================================== -->
+    <div id="leaderboard-modal" class="hidden fixed inset-0 z-50 bg-slate-900/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col p-5 sm:p-6 animate-pop">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+                <div>
+                    <h3 class="text-lg sm:text-2xl font-black text-indigo-900 flex items-center gap-2">
+                        <i class="fa-solid fa-ranking-star text-amber-500"></i> Bảng Xếp Hạng & Danh Sách Học Sinh
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-500 font-semibold">Xếp theo số câu đúng nhiều nhất &rarr; thời gian hoàn thành sớm nhất • Thầy Bùi Đức Mạnh</p>
+                </div>
+                <button onclick="closeLeaderboardModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 font-bold">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Thông báo copy/xuất -->
+            <div id="export-toast" class="hidden my-2 px-4 py-2 rounded-xl bg-emerald-100 text-emerald-800 font-bold text-xs sm:text-sm text-center"></div>
+
+            <!-- Bảng danh sách học sinh -->
+            <div class="flex-1 overflow-auto border border-slate-200 rounded-2xl my-2">
+                <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                    <thead class="bg-slate-100 text-slate-700 font-extrabold sticky top-0">
+                        <tr>
+                            <th class="p-3 border-b text-center">Hạng</th>
+                            <th class="p-3 border-b">Họ và Tên</th>
+                            <th class="p-3 border-b">Lớp</th>
+                            <th class="p-3 border-b text-center">Đúng</th>
+                            <th class="p-3 border-b text-center">Thời gian</th>
+                            <th class="p-3 border-b text-center hidden sm:table-cell">NB / TH / VD</th>
+                            <th class="p-3 border-b hidden md:table-cell">Lúc nộp bài</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-tbody" class="divide-y divide-slate-100 font-semibold text-slate-700">
+                        <!-- Dữ liệu render bằng JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Các nút hành động xuất dữ liệu -->
+            <div class="pt-3 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2.5">
+                <button onclick="clearStudentRecords()" class="px-4 py-2.5 rounded-xl bg-rose-100 hover:bg-rose-200 text-rose-700 font-extrabold text-xs sm:text-sm flex items-center gap-1.5 transition">
+                    <i class="fa-solid fa-trash-can"></i> Xóa danh sách
+                </button>
+                <div class="flex flex-wrap items-center gap-2">
+                    <button onclick="copyZaloReport(true)" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs sm:text-sm flex items-center gap-1.5 transition shadow">
+                        <i class="fa-solid fa-comment-dots"></i> Copy gửi Zalo Phụ huynh
+                    </button>
+                    <button onclick="copyTableForGoogleSheet()" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-900 font-extrabold text-xs sm:text-sm flex items-center gap-1.5 transition shadow">
+                        <i class="fa-solid fa-copy"></i> Copy dán Google Sheet
+                    </button>
+                    <button onclick="exportToCSV()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs sm:text-sm flex items-center gap-1.5 transition shadow">
+                        <i class="fa-solid fa-file-csv"></i> Tải file (.CSV)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL 2: CẤU HÌNH KẾT NỐI TRỰC TIẾP GOOGLE APPS SCRIPT (TÙY CHỌN) -->
+    <!-- ===================================================================== -->
+    <div id="sheet-settings-modal" class="hidden fixed inset-0 z-50 bg-slate-900/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-5 sm:p-6 animate-pop">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+                <h3 class="text-lg sm:text-xl font-black text-indigo-900">
+                    <i class="fa-brands fa-google-drive text-emerald-600 mr-1"></i> Tự động gửi điểm về Google Sheet
+                </h3>
+                <button onclick="closeSheetSettingsModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 font-bold">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="py-4 space-y-4 text-xs sm:text-sm text-slate-700">
+                <p class="font-semibold">
+                    Thầy có thể dán đường link <strong>Google Apps Script Web App</strong> vào bên dưới để mỗi khi học sinh làm xong, kết quả tự động đẩy thẳng vào Google Sheet của Thầy:
+                </p>
+                <div>
+                    <label class="block font-extrabold text-slate-800 mb-1">Link Web App URL (Google Apps Script):</label>
+                    <input type="url" id="webhook-url-input" placeholder="https://script.google.com/macros/s/..../exec" 
+                        class="w-full px-3.5 py-2.5 rounded-xl border-2 border-slate-300 focus:border-indigo-500 focus:outline-none font-semibold">
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="saveWebhookUrl()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold transition">
+                        Lưu cấu hình
+                    </button>
+                    <span id="webhook-saved-msg" class="hidden text-emerald-600 font-extrabold">✅ Đã lưu link thành công!</span>
+                </div>
+
+                <div class="bg-slate-100 p-3.5 rounded-2xl border border-slate-200">
+                    <p class="font-extrabold text-slate-800 mb-1.5">📋 Hướng dẫn nhanh tạo Google Sheet tự nhận điểm (1 phút):</p>
+                    <ol class="list-decimal list-inside space-y-1 text-slate-600 font-semibold">
+                        <li>Mở 1 file Google Sheet mới &rarr; chọn <strong>Tiện ích mở rộng</strong> &rarr; <strong>Apps Script</strong>.</li>
+                        <li>Xóa hết mã cũ, dán đoạn mã dưới đây vào và bấm <strong>Triển khai (Deploy) &rarr; Tùy chọn triển khai mới &rarr; Ứng dụng web</strong> (Ai có quyền truy cập: <em>Bất kỳ ai</em>):</li>
+                    </ol>
+                    <pre class="mt-2 p-2.5 bg-slate-800 text-emerald-300 rounded-xl overflow-x-auto text-[11px] font-mono select-all">function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = JSON.parse(e.postData.contents);
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(["Thời gian nộp", "Họ và tên", "Lớp", "Số câu đúng", "Thời gian làm bài", "Điểm", "Nhận biết", "Thông hiểu", "Vận dụng"]);
+  }
+  sheet.appendRow([data.time, data.name, data.className, data.correctText, data.durationText, data.score, data.nb, data.th, data.vd]);
+  return ContentService.createTextOutput("OK");
+}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- JAVASCRIPT LOGIC -->
+    <!-- ===================================================================== -->
+    <script>
+        // =========================================================================
+        // 1. KHO 20 CÂU HỎI CHUẨN TOÁN 8 (10 NHẬN BIẾT - 6 THÔNG HIỂU (x) - 4 VẬN DỤNG RÚT GỌN (2x))
+        // =========================================================================
+        const rawQuestions = [
+            // --- 10 CÂU NHẬN BIẾT (Công thức chiều xuôi & chiều ngược) ---
+            {
+                level: "Nhận biết",
+                q: "Khai triển hằng đẳng thức bình phương của một tổng: <span class='math-expr'>(A + B)<sup>2</sup></span> bằng:",
+                options: [
+                    "<span class='math-expr'>A<sup>2</sup> + 2AB + B<sup>2</sup></span>",
+                    "<span class='math-expr'>A<sup>2</sup> + AB + B<sup>2</sup></span>",
+                    "<span class='math-expr'>A<sup>2</sup> - 2AB + B<sup>2</sup></span>",
+                    "<span class='math-expr'>A<sup>2</sup> + 2AB - B<sup>2</sup></span>"
+                ],
+                correct: 0,
+                explain: "Bình phương của một tổng bằng bình phương số thứ nhất cộng hai lần tích hai số cộng bình phương số thứ hai: (A + B)² = A² + 2AB + B²."
+            },
+            {
+                level: "Nhận biết",
+                q: "Khai triển hằng đẳng thức bình phương của một hiệu: <span class='math-expr'>(A - B)<sup>2</sup></span> bằng:",
+                options: [
+                    "<span class='math-expr'>A<sup>2</sup> - 2AB + B<sup>2</sup></span>",
+                    "<span class='math-expr'>A<sup>2</sup> - 2AB - B<sup>2</sup></span>",
+                    "<span class='math-expr'>A<sup>2</sup> - AB + B<sup>2</sup></span>",
+                    "<span class='math-expr'>A<sup>2</sup> + 2AB + B<sup>2</sup></span>"
+                ],
+                correct: 0,
+                explain: "Chú ý dấu trừ ở tích hai lần: (A - B)² = A² - 2AB + B²."
+            },
+            {
+                level: "Nhận biết",
+                q: "Hiệu hai bình phương <span class='math-expr'>A<sup>2</sup> - B<sup>2</sup></span> được viết dưới dạng tích là:",
+                options: [
+                    "<span class='math-expr'>(A - B)(A + B)</span>",
+                    "<span class='math-expr'>(A - B)<sup>2</sup></span>",
+                    "<span class='math-expr'>(A + B)<sup>2</sup></span>",
+                    "<span class='math-expr'>(A - B)(A<sup>2</sup> + AB + B<sup>2</sup>)</span>"
+                ],
+                correct: 0,
+                explain: "Hiệu hai bình phương bằng tích của hiệu hai biểu thức với tổng hai biểu thức: A² - B² = (A - B)(A + B)."
+            },
+            {
+                level: "Nhận biết",
+                q: "Khai triển lập phương của một tổng <span class='math-expr'>(A + B)<sup>3</sup></span> là:",
+                options: [
+                    "<span class='math-expr'>A<sup>3</sup> + 3A<sup>2</sup>B + 3AB<sup>2</sup> + B<sup>3</sup></span>",
+                    "<span class='math-expr'>A<sup>3</sup> + A<sup>2</sup>B + AB<sup>2</sup> + B<sup>3</sup></span>",
+                    "<span class='math-expr'>A<sup>3</sup> - 3A<sup>2</sup>B + 3AB<sup>2</sup> - B<sup>3</sup></span>",
+                    "<span class='math-expr'>(A + B)(A<sup>2</sup> - AB + B<sup>2</sup>)</span>"
+                ],
+                correct: 0,
+                explain: "Lập phương của một tổng có hệ số 1 - 3 - 3 - 1 và toàn dấu cộng: A³ + 3A²B + 3AB² + B³."
+            },
+            {
+                level: "Nhận biết",
+                q: "Khai triển lập phương của một hiệu <span class='math-expr'>(A - B)<sup>3</sup></span> là:",
+                options: [
+                    "<span class='math-expr'>A<sup>3</sup> - 3A<sup>2</sup>B + 3AB<sup>2</sup> - B<sup>3</sup></span>",
+                    "<span class='math-expr'>A<sup>3</sup> - 3A<sup>2</sup>B - 3AB<sup>2</sup> - B<sup>3</sup></span>",
+                    "<span class='math-expr'>A<sup>3</sup> + 3A<sup>2</sup>B - 3AB<sup>2</sup> - B<sup>3</sup></span>",
+                    "<span class='math-expr'>(A - B)(A<sup>2</sup> + AB + B<sup>2</sup>)</span>"
+                ],
+                correct: 0,
+                explain: "Lập phương của một hiệu có dấu đan xen (+, -, +, -): A³ - 3A²B + 3AB² - B³."
+            },
+            {
+                level: "Nhận biết",
+                q: "Tổng hai lập phương <span class='math-expr'>A<sup>3</sup> + B<sup>3</sup></span> bằng:",
+                options: [
+                    "<span class='math-expr'>(A + B)(A<sup>2</sup> - AB + B<sup>2</sup>)</span>",
+                    "<span class='math-expr'>(A + B)(A<sup>2</sup> + AB + B<sup>2</sup>)</span>",
+                    "<span class='math-expr'>(A - B)(A<sup>2</sup> + AB + B<sup>2</sup>)</span>",
+                    "<span class='math-expr'>(A + B)(A<sup>2</sup> - 2AB + B<sup>2</sup>)</span>"
+                ],
+                correct: 0,
+                explain: "Tổng hai lập phương giữ nguyên dấu (+) ở ngoặc đầu và đổi thành dấu (-) ở bình phương thiếu: (A + B)(A² - AB + B²)."
+            },
+            {
+                level: "Nhận biết",
+                q: "Hiệu hai lập phương <span class='math-expr'>A<sup>3</sup> - B<sup>3</sup></span> bằng:",
+                options: [
+                    "<span class='math-expr'>(A - B)(A<sup>2</sup> + AB + B<sup>2</sup>)</span>",
+                    "<span class='math-expr'>(A - B)(A<sup>2</sup> - AB + B<sup>2</sup>)</span>",
+                    "<span class='math-expr'>(A + B)(A<sup>2</sup> - AB + B<sup>2</sup>)</span>",
+                    "<span class='math-expr'>(A - B)(A<sup>2</sup> + 2AB + B<sup>2</sup>)</span>"
+                ],
+                correct: 0,
+                explain: "Hiệu hai lập phương giữ nguyên dấu (-) ở ngoặc đầu và toàn dấu (+) ở ngoặc sau: (A - B)(A² + AB + B²)."
+            },
+            {
+                level: "Nhận biết",
+                q: "Viết biểu thức <span class='math-expr'>x<sup>2</sup> + 2xy + y<sup>2</sup></span> dưới dạng bình phương của một tổng (chiều ngược):",
+                options: [
+                    "<span class='math-expr'>(x + y)<sup>2</sup></span>",
+                    "<span class='math-expr'>(x - y)<sup>2</sup></span>",
+                    "<span class='math-expr'>x<sup>2</sup> + y<sup>2</sup></span>",
+                    "<span class='math-expr'>(x + y)(x - y)</span>"
+                ],
+                correct: 0,
+                explain: "Áp dụng chiều ngược của hằng đẳng thức số 1: x² + 2xy + y² = (x + y)²."
+            },
+            {
+                level: "Nhận biết",
+                q: "Biểu thức <span class='math-expr'>(x - y)(x + y)</span> viết gọn lại (chiều ngược) là:",
+                options: [
+                    "<span class='math-expr'>x<sup>2</sup> - y<sup>2</sup></span>",
+                    "<span class='math-expr'>x<sup>2</sup> + y<sup>2</sup></span>",
+                    "<span class='math-expr'>(x - y)<sup>2</sup></span>",
+                    "<span class='math-expr'>(x + y)<sup>2</sup></span>"
+                ],
+                correct: 0,
+                explain: "Tích của hiệu và tổng hai số bằng hiệu hai bình phương: (x - y)(x + y) = x² - y²."
+            },
+            {
+                level: "Nhận biết",
+                q: "Biểu thức <span class='math-expr'>x<sup>3</sup> - 3x<sup>2</sup>y + 3xy<sup>2</sup> - y<sup>3</sup></span> viết gọn (chiều ngược) là:",
+                options: [
+                    "<span class='math-expr'>(x - y)<sup>3</sup></span>",
+                    "<span class='math-expr'>(x + y)<sup>3</sup></span>",
+                    "<span class='math-expr'>x<sup>3</sup> - y<sup>3</sup></span>",
+                    "<span class='math-expr'>x<sup>3</sup> + y<sup>3</sup></span>"
+                ],
+                correct: 0,
+                explain: "Dấu đan xen (+, -, +, -) chính là khai triển của lập phương một hiệu (x - y)³."
+            },
+
+            // --- 6 CÂU THÔNG HIỂU (Chỉ áp dụng biến cơ bản là x) ---
+            {
+                level: "Thông hiểu",
+                q: "Khai triển biểu thức <span class='math-expr'>(x + 1)<sup>2</sup></span> ta được kết quả nào?",
+                options: [
+                    "<span class='math-expr'>x<sup>2</sup> + 2x + 1</span>",
+                    "<span class='math-expr'>x<sup>2</sup> + x + 1</span>",
+                    "<span class='math-expr'>x<sup>2</sup> + 2x + 2</span>",
+                    "<span class='math-expr'>x<sup>2</sup> + 1</span>"
+                ],
+                correct: 0,
+                explain: "(x + 1)² = x² + 2·x·1 + 1² = x² + 2x + 1."
+            },
+            {
+                level: "Thông hiểu",
+                q: "Khai triển biểu thức <span class='math-expr'>(x - 3)<sup>2</sup></span> ta được kết quả nào?",
+                options: [
+                    "<span class='math-expr'>x<sup>2</sup> - 6x + 9</span>",
+                    "<span class='math-expr'>x<sup>2</sup> - 3x + 9</span>",
+                    "<span class='math-expr'>x<sup>2</sup> - 6x - 9</span>",
+                    "<span class='math-expr'>x<sup>2</sup> - 9</span>"
+                ],
+                correct: 0,
+                explain: "(x - 3)² = x² - 2·x·3 + 3² = x² - 6x + 9."
+            },
+            {
+                level: "Thông hiểu",
+                q: "Phân tích đa thức <span class='math-expr'>x<sup>2</sup> - 16</span> thành nhân tử (chiều ngược) ta được:",
+                options: [
+                    "<span class='math-expr'>(x - 4)(x + 4)</span>",
+                    "<span class='math-expr'>(x - 8)(x + 8)</span>",
+                    "<span class='math-expr'>(x - 4)<sup>2</sup></span>",
+                    "<span class='math-expr'>(x - 16)(x + 16)</span>"
+                ],
+                correct: 0,
+                explain: "Vì 16 = 4² nên x² - 16 = x² - 4² = (x - 4)(x + 4)."
+            },
+            {
+                level: "Thông hiểu",
+                q: "Khai triển biểu thức <span class='math-expr'>(x + 1)<sup>3</sup></span> ta được kết quả nào?",
+                options: [
+                    "<span class='math-expr'>x<sup>3</sup> + 3x<sup>2</sup> + 3x + 1</span>",
+                    "<span class='math-expr'>x<sup>3</sup> + x<sup>2</sup> + x + 1</span>",
+                    "<span class='math-expr'>x<sup>3</sup> + 3x<sup>2</sup> + 3x + 3</span>",
+                    "<span class='math-expr'>x<sup>3</sup> + 1</span>"
+                ],
+                correct: 0,
+                explain: "(x + 1)³ = x³ + 3·x²·1 + 3·x·1² + 1³ = x³ + 3x² + 3x + 1."
+            },
+            {
+                level: "Thông hiểu",
+                q: "Viết biểu thức <span class='math-expr'>x<sup>3</sup> + 8</span> dưới dạng tích (chiều ngược) ta được:",
+                options: [
+                    "<span class='math-expr'>(x + 2)(x<sup>2</sup> - 2x + 4)</span>",
+                    "<span class='math-expr'>(x + 2)(x<sup>2</sup> + 2x + 4)</span>",
+                    "<span class='math-expr'>(x - 2)(x<sup>2</sup> + 2x + 4)</span>",
+                    "<span class='math-expr'>(x + 2)<sup>3</sup></span>"
+                ],
+                correct: 0,
+                explain: "Vì 8 = 2³ nên x³ + 8 = x³ + 2³ = (x + 2)(x² - 2x + 4)."
+            },
+            {
+                level: "Thông hiểu",
+                q: "Viết biểu thức <span class='math-expr'>x<sup>2</sup> - 10x + 25</span> dưới dạng bình phương của một hiệu:",
+                options: [
+                    "<span class='math-expr'>(x - 5)<sup>2</sup></span>",
+                    "<span class='math-expr'>(x + 5)<sup>2</sup></span>",
+                    "<span class='math-expr'>(x - 25)<sup>2</sup></span>",
+                    "<span class='math-expr'>(x - 5)(x + 5)</span>"
+                ],
+                correct: 0,
+                explain: "Ta có x² - 10x + 25 = x² - 2·x·5 + 5² = (x - 5)²."
+            },
+
+            // --- 4 CÂU VẬN DỤNG (Dạng rút gọn biểu thức có hệ số 2x) ---
+            {
+                level: "Vận dụng",
+                q: "Rút gọn biểu thức: <span class='math-expr'>A = (2x + 1)<sup>2</sup> - 4x<sup>2</sup></span>",
+                options: [
+                    "<span class='math-expr'>4x + 1</span>",
+                    "<span class='math-expr'>2x + 1</span>",
+                    "<span class='math-expr'>8x<sup>2</sup> + 4x + 1</span>",
+                    "<span class='math-expr'>4x - 1</span>"
+                ],
+                correct: 0,
+                explain: "Bước 1: Khai triển (2x + 1)² = (2x)² + 2·2x·1 + 1² = 4x² + 4x + 1. Bước 2: A = (4x² + 4x + 1) - 4x² = 4x + 1."
+            },
+            {
+                level: "Vận dụng",
+                q: "Rút gọn biểu thức: <span class='math-expr'>B = (2x - 3)(2x + 3) - 4x<sup>2</sup></span>",
+                options: [
+                    "<span class='math-expr'>-9</span>",
+                    "<span class='math-expr'>9</span>",
+                    "<span class='math-expr'>-6</span>",
+                    "<span class='math-expr'>8x<sup>2</sup> - 9</span>"
+                ],
+                correct: 0,
+                explain: "Bước 1: Áp dụng hiệu hai bình phương (2x - 3)(2x + 3) = (2x)² - 3² = 4x² - 9. Bước 2: B = 4x² - 9 - 4x² = -9."
+            },
+            {
+                level: "Vận dụng",
+                q: "Rút gọn biểu thức: <span class='math-expr'>C = (2x + 1)<sup>2</sup> + (2x - 1)<sup>2</sup> - 8x<sup>2</sup></span>",
+                options: [
+                    "<span class='math-expr'>2</span>",
+                    "<span class='math-expr'>0</span>",
+                    "<span class='math-expr'>8x + 2</span>",
+                    "<span class='math-expr'>-2</span>"
+                ],
+                correct: 0,
+                explain: "Ta có (2x + 1)² = 4x² + 4x + 1 và (2x - 1)² = 4x² - 4x + 1. Cộng lại được 8x² + 2, trừ đi 8x² còn lại 2."
+            },
+            {
+                level: "Vận dụng",
+                q: "Rút gọn biểu thức: <span class='math-expr'>D = (2x + 3)<sup>2</sup> - (2x - 3)<sup>2</sup></span>",
+                options: [
+                    "<span class='math-expr'>24x</span>",
+                    "<span class='math-expr'>12x</span>",
+                    "<span class='math-expr'>18</span>",
+                    "<span class='math-expr'>8x<sup>2</sup> + 18</span>"
+                ],
+                correct: 0,
+                explain: "(2x + 3)² = 4x² + 12x + 9; (2x - 3)² = 4x² - 12x + 9. Lấy biểu thức trước trừ biểu thức sau: (4x² + 12x + 9) - (4x² - 12x + 9) = 24x."
+            }
+        ];
+
+        // =========================================================================
+        // 2. HỆ THỐNG ÂM THANH (WEB AUDIO API - KHÔNG CẦN FILE NGOÀI)
+        // =========================================================================
+        let audioCtx = null;
+        let soundEnabled = true;
+
+        function initAudio() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) {
+                    audioCtx = new AudioContext();
+                }
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        function playSound(type) {
+            if (!soundEnabled) return;
+            try {
+                initAudio();
+                if (!audioCtx) return;
+
+                const now = audioCtx.currentTime;
+                if (type === 'correct') {
+                    // Chuỗi nốt vui tươi (C5 - E5 - G5)
+                    const freqs = [523.25, 659.25, 783.99];
+                    freqs.forEach((f, idx) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(f, now + idx * 0.08);
+                        gain.gain.setValueAtTime(0.22, now + idx * 0.08);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.35);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start(now + idx * 0.08);
+                        osc.stop(now + idx * 0.08 + 0.36);
+                    });
+                } else if (type === 'wrong') {
+                    // Âm trầm báo sai nhẹ nhàng
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.linearRampToValueAtTime(140, now + 0.35);
+                    gain.gain.setValueAtTime(0.18, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.36);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.38);
+                } else if (type === 'win') {
+                    // Nhạc chúc mừng hoàn thành
+                    const notes = [523.25, 659.25, 783.99, 1046.50];
+                    notes.forEach((f, i) => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(f, now + i * 0.12);
+                        gain.gain.setValueAtTime(0.25, now + i * 0.12);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.12 + 0.5);
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+                        osc.start(now + i * 0.12);
+                        osc.stop(now + i * 0.12 + 0.52);
+                    });
+                }
+            } catch (e) {
+                console.warn("Audio error:", e);
+            }
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            const icon = document.getElementById('sound-icon');
+            if (soundEnabled) {
+                icon.className = "fa-solid fa-volume-high";
+                playSound('correct');
+            } else {
+                icon.className = "fa-solid fa-volume-xmark text-slate-400";
+            }
+        }
+
+        // =========================================================================
+        // 3. HỆ THỐNG ZOOM THÔNG MINH (CHỐNG TRÀN & MẤT CHỮ KHI PHÓNG TO)
+        // =========================================================================
+        let currentZoom = 1.0;
+
+        function changeZoom(delta) {
+            currentZoom = Math.min(2.05, Math.max(0.85, Math.round((currentZoom + delta) * 100) / 100));
+            applyZoom();
+        }
+
+        function resetZoom() {
+            currentZoom = 1.0;
+            applyZoom();
+        }
+
+        function applyZoom() {
+            document.documentElement.style.setProperty('--zoom-scale', currentZoom);
+            document.getElementById('zoom-level-text').textContent = Math.round(currentZoom * 100) + '%';
+
+            // Khi phóng to >= 130%, tự động chuyển lưới đáp án sang 1 cột để chữ to rõ không bị chật
+            const optionsGrid = document.getElementById('options-grid');
+            if (optionsGrid) {
+                if (currentZoom >= 1.3) {
+                    optionsGrid.classList.remove('md:grid-cols-2');
+                    optionsGrid.classList.add('grid-cols-1');
+                } else {
+                    optionsGrid.classList.add('md:grid-cols-2');
+                }
+            }
+        }
+
+        // =========================================================================
+        // 4. LOGIC TRÒ CHƠI, ĐẢO ĐÁP ÁN & ĐỒNG HỒ BẤM GIỜ
+        // =========================================================================
+        let activeQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let streak = 0;
+        let maxStreak = 0;
+        let answered = false;
+        let currentStudentName = "";
+        let currentStudentClass = "";
+        let quizStartTime = 0;
+        let elapsedSeconds = 0;
+        let timerInterval = null;
+
+        let stats = {
+            "Nhận biết": { correct: 0, total: 10 },
+            "Thông hiểu": { correct: 0, total: 6 },
+            "Vận dụng": { correct: 0, total: 4 }
+        };
+
+        const STORAGE_KEY = "bui_duc_manh_hdt_records_v1";
+        const WEBHOOK_KEY = "bui_duc_manh_hdt_webhook_v1";
+
+        const happyStickers = ["🎉", "🥳", "🌟", "👏", "🏆", "🚀", "💯", "🔥"];
+        const encourageStickers = ["💪", "🤔", "📖", "💡", "🌱"];
+
+        function shuffleArray(arr) {
+            const copy = [...arr];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        // Chuẩn bị bộ câu hỏi: giữ tiến trình từ dễ -> khó (NB -> TH -> VD) nhưng ĐẢO ĐÁP ÁN A, B, C, D ngẫu nhiên
+        function prepareShuffledQuestions() {
+            return rawQuestions.map(item => {
+                const indexedOptions = item.options.map((optText, idx) => ({
+                    text: optText,
+                    isCorrect: idx === item.correct
+                }));
+                const shuffledOpts = shuffleArray(indexedOptions);
+                return {
+                    level: item.level,
+                    q: item.q,
+                    options: shuffledOpts.map(o => o.text),
+                    correctIndex: shuffledOpts.findIndex(o => o.isCorrect),
+                    explain: item.explain
+                };
+            });
+        }
+
+        function startGame() {
+            const nameInput = document.getElementById('student-name-input');
+            const classInput = document.getElementById('student-class-input');
+            const errorMsg = document.getElementById('name-error-msg');
+
+            const nameVal = nameInput.value.trim();
+            const classVal = classInput.value.trim() || "8A";
+
+            if (!nameVal) {
+                errorMsg.classList.remove('hidden');
+                nameInput.focus();
+                nameInput.classList.add('border-rose-500');
+                return;
+            }
+
+            errorMsg.classList.add('hidden');
+            nameInput.classList.remove('border-rose-500');
+
+            currentStudentName = nameVal;
+            currentStudentClass = classVal;
+            initAudio();
+
+            // Reset chỉ số trò chơi
+            activeQuestions = prepareShuffledQuestions();
+            currentIndex = 0;
+            score = 0;
+            streak = 0;
+            maxStreak = 0;
+            stats = {
+                "Nhận biết": { correct: 0, total: 10 },
+                "Thông hiểu": { correct: 0, total: 6 },
+                "Vận dụng": { correct: 0, total: 4 }
+            };
+
+            document.getElementById('display-student-info').textContent = `${currentStudentName} (${currentStudentClass})`;
+            document.getElementById('start-screen').classList.add('hidden');
+            document.getElementById('result-screen').classList.add('hidden');
+            const quizScreen = document.getElementById('quiz-screen');
+            quizScreen.classList.remove('hidden');
+            quizScreen.classList.add('flex');
+
+            updateScoreUI();
+            startTimer();
+            renderQuestion();
+        }
+
+        function startTimer() {
+            stopTimer();
+            quizStartTime = Date.now();
+            elapsedSeconds = 0;
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                elapsedSeconds = Math.floor((Date.now() - quizStartTime) / 1000);
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        function formatDuration(sec) {
+            const m = Math.floor(sec / 60).toString().padStart(2, '0');
+            const s = (sec % 60).toString().padStart(2, '0');
+            return `${m}:${s}`;
+        }
+
+        function updateTimerDisplay() {
+            const el = document.getElementById('timer-display');
+            if (el) el.textContent = formatDuration(elapsedSeconds);
+        }
+
+        function restartSameStudent() {
+            startGame();
+        }
+
+        function backToStartForNextStudent() {
+            stopTimer();
+            document.getElementById('student-name-input').value = "";
+            document.getElementById('result-screen').classList.add('hidden');
+            document.getElementById('start-screen').classList.remove('hidden');
+            setTimeout(() => document.getElementById('student-name-input').focus(), 100);
+        }
+
+        function renderQuestion() {
+            answered = false;
+            const qObj = activeQuestions[currentIndex];
+
+            // Cập nhật tiến trình
+            const qNum = currentIndex + 1;
+            const pct = Math.round((qNum / activeQuestions.length) * 100);
+            document.getElementById('current-q-num').textContent = qNum;
+            document.getElementById('progress-percent').textContent = pct + '%';
+            document.getElementById('progress-bar').style.width = pct + '%';
+
+            // Badge mức độ
+            const badge = document.getElementById('level-badge');
+            badge.textContent = `Mức độ: ${qObj.level}`;
+            if (qObj.level === "Nhận biết") {
+                badge.className = "scalable-badge px-3 py-1 rounded-xl font-extrabold bg-emerald-100 text-emerald-800";
+            } else if (qObj.level === "Thông hiểu") {
+                badge.className = "scalable-badge px-3 py-1 rounded-xl font-extrabold bg-amber-100 text-amber-800";
+            } else {
+                badge.className = "scalable-badge px-3 py-1 rounded-xl font-extrabold bg-rose-100 text-rose-800";
+            }
+
+            // Nội dung câu hỏi
+            document.getElementById('question-text').innerHTML = qObj.q;
+
+            // Render 4 đáp án A, B, C, D
+            const letters = ["A", "B", "C", "D"];
+            const grid = document.getElementById('options-grid');
+            grid.innerHTML = "";
+
+            qObj.options.forEach((optHtml, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "option-btn w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 border-slate-200 bg-white hover:border-indigo-400 hover:bg-indigo-50/40 flex items-center gap-3.5 shadow-sm";
+                btn.onclick = () => handleAnswer(idx, btn);
+                btn.innerHTML = `
+                    <span class="w-9 h-9 sm:w-10 sm:h-10 shrink-0 rounded-xl bg-indigo-100 text-indigo-800 font-black flex items-center justify-center text-base sm:text-lg option-letter">
+                        ${letters[idx]}
+                    </span>
+                    <span class="scalable-option font-bold text-slate-800 flex-1">${optHtml}</span>
+                `;
+                grid.appendChild(btn);
+            });
+
+            // Ẩn khung phản hồi
+            document.getElementById('feedback-box').classList.add('hidden');
+            applyZoom();
+        }
+
+        function handleAnswer(selectedIndex, selectedBtn) {
+            if (answered) return;
+            answered = true;
+
+            const qObj = activeQuestions[currentIndex];
+            const isCorrect = selectedIndex === qObj.correctIndex;
+            const allButtons = document.querySelectorAll('#options-grid .option-btn');
+
+            allButtons.forEach((btn, idx) => {
+                btn.disabled = true;
+                const letterSpan = btn.querySelector('.option-letter');
+                if (idx === qObj.correctIndex) {
+                    btn.classList.remove('border-slate-200', 'bg-white');
+                    btn.classList.add('border-emerald-500', 'bg-emerald-50', 'ring-2', 'ring-emerald-300');
+                    letterSpan.classList.remove('bg-indigo-100', 'text-indigo-800');
+                    letterSpan.classList.add('bg-emerald-500', 'text-white');
+                } else if (idx === selectedIndex && !isCorrect) {
+                    btn.classList.remove('border-slate-200', 'bg-white');
+                    btn.classList.add('border-rose-500', 'bg-rose-50', 'animate-shake');
+                    letterSpan.classList.remove('bg-indigo-100', 'text-indigo-800');
+                    letterSpan.classList.add('bg-rose-500', 'text-white');
+                } else {
+                    btn.classList.add('opacity-60');
+                }
+            });
+
+            const fbBox = document.getElementById('feedback-box');
+            const fbSticker = document.getElementById('feedback-sticker');
+            const fbTitle = document.getElementById('feedback-title');
+            const fbExplain = document.getElementById('feedback-explanation');
+
+            fbBox.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-300', 'bg-rose-50', 'border-rose-300');
+
+            if (isCorrect) {
+                playSound('correct');
+                streak++;
+                if (streak > maxStreak) maxStreak = streak;
+                const bonus = streak >= 3 ? 2 : 0;
+                score += (10 + bonus);
+                stats[qObj.level].correct++;
+
+                fbBox.classList.add('bg-emerald-50', 'border-emerald-300');
+                fbSticker.textContent = happyStickers[Math.floor(Math.random() * happyStickers.length)];
+                fbTitle.textContent = streak >= 3 ? `Tuyệt đỉnh! Chuỗi ${streak} câu đúng liên tiếp (+${10 + bonus} điểm)` : "Chính xác! Giỏi lắm (+10 điểm)";
+                fbTitle.className = "font-black text-base sm:text-lg text-emerald-800";
+
+                // Bắn pháo giấy mini khi trả lời đúng
+                if (typeof confetti === 'function') {
+                    confetti({ particleCount: 35, spread: 55, origin: { y: 0.75 } });
+                }
+            } else {
+                playSound('wrong');
+                streak = 0;
+                fbBox.classList.add('bg-rose-50', 'border-rose-300');
+                fbSticker.textContent = encourageStickers[Math.floor(Math.random() * encourageStickers.length)];
+                fbTitle.textContent = "Chưa chính xác rồi! Xem gợi ý bên dưới nhé:";
+                fbTitle.className = "font-black text-base sm:text-lg text-rose-800";
+            }
+
+            fbExplain.textContent = qObj.explain;
+            document.getElementById('next-btn').innerHTML = currentIndex === activeQuestions.length - 1
+                ? `<span>Xem kết quả</span> <i class="fa-solid fa-flag-checkered"></i>`
+                : `<span>Câu tiếp theo</span> <i class="fa-solid fa-arrow-right"></i>`;
+
+            updateScoreUI();
+
+            // Tự động cuộn mượt xuống phần giải thích để học sinh thấy rõ khi đang bật Zoom lớn
+            setTimeout(() => {
+                fbBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+
+        function updateScoreUI() {
+            document.getElementById('score-display').textContent = score;
+            const streakBox = document.getElementById('streak-box');
+            if (streak >= 2) {
+                streakBox.classList.remove('hidden');
+                streakBox.classList.add('flex');
+                document.getElementById('streak-count').textContent = streak;
+            } else {
+                streakBox.classList.add('hidden');
+                streakBox.classList.remove('flex');
+            }
+        }
+
+        function nextQuestion() {
+            if (currentIndex < activeQuestions.length - 1) {
+                currentIndex++;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            stopTimer();
+            playSound('win');
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('quiz-screen').classList.remove('flex');
+            document.getElementById('result-screen').classList.remove('hidden');
+
+            const totalCorrect = stats["Nhận biết"].correct + stats["Thông hiểu"].correct + stats["Vận dụng"].correct;
+            document.getElementById('result-student-name').textContent = `${currentStudentName} - Lớp ${currentStudentClass}`;
+            document.getElementById('final-score').textContent = score;
+            document.getElementById('final-correct').textContent = `${totalCorrect}/20`;
+            document.getElementById('final-streak').textContent = `${maxStreak} 🔥`;
+
+            document.getElementById('stat-time').textContent = formatDuration(elapsedSeconds);
+            document.getElementById('stat-nb').textContent = `${stats["Nhận biết"].correct}/10`;
+            document.getElementById('stat-th').textContent = `${stats["Thông hiểu"].correct}/6`;
+            document.getElementById('stat-vd').textContent = `${stats["Vận dụng"].correct}/4`;
+
+            // Lưu kết quả học sinh vào bộ nhớ & gửi Google Sheet (nếu có cấu hình Webhook)
+            saveAndSyncStudentResult(totalCorrect);
+            renderResultRankingTable();
+
+            const resTitle = document.getElementById('result-title');
+            const resTrophy = document.getElementById('result-trophy');
+            if (totalCorrect >= 17) {
+                resTitle.textContent = "XUẤT SẮC! BẬC THẦY HẰNG ĐẲNG THỨC!";
+                resTrophy.textContent = "🏆";
+            } else if (totalCorrect >= 12) {
+                resTitle.textContent = "LÀM TỐT LẮM! TIẾP TỤC PHÁT HUY NHÉ!";
+                resTrophy.textContent = "🥇";
+            } else {
+                resTitle.textContent = "CỐ GẮNG LÊN! ÔN LẠI CÔNG THỨC NÀO!";
+                resTrophy.textContent = "🌟";
+            }
+
+            if (typeof confetti === 'function') {
+                confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
+            }
+        }
+
+        // =========================================================================
+        // 5. QUẢN LÝ BẢNG XẾP HẠNG, GỬI ZALO PHỤ HUYNH & XUẤT GOOGLE SHEET
+        // =========================================================================
+        function getStudentRecords() {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            } catch {
+                return [];
+            }
+        }
+
+        function getSortedRecords() {
+            const records = getStudentRecords();
+            // Sắp xếp: 1. Số câu đúng giảm dần -> 2. Thời gian hoàn thành (giây) tăng dần
+            return records.sort((a, b) => {
+                if (b.correct !== a.correct) {
+                    return b.correct - a.correct;
+                }
+                const durA = typeof a.durationSec === 'number' ? a.durationSec : 999999;
+                const durB = typeof b.durationSec === 'number' ? b.durationSec : 999999;
+                return durA - durB;
+            });
+        }
+
+        function getRankBadge(index) {
+            if (index === 0) return '<span class="text-lg" title="Hạng Nhất">🥇</span>';
+            if (index === 1) return '<span class="text-lg" title="Hạng Nhì">🥈</span>';
+            if (index === 2) return '<span class="text-lg" title="Hạng Ba">🥉</span>';
+            return `<span class="font-extrabold text-slate-500">#${index + 1}</span>`;
+        }
+
+        function updateRecordCountBadge() {
+            const records = getStudentRecords();
+            document.getElementById('record-count-badge').textContent = records.length;
+        }
+
+        function saveAndSyncStudentResult(totalCorrect) {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }) + ' ' + now.toLocaleDateString('vi-VN');
+            const durationFormatted = formatDuration(elapsedSeconds);
+            
+            const record = {
+                time: timeStr,
+                name: currentStudentName,
+                className: currentStudentClass,
+                score: score,
+                correct: totalCorrect,
+                correctText: `${totalCorrect}/20`,
+                durationSec: elapsedSeconds,
+                durationText: durationFormatted,
+                nb: `${stats["Nhận biết"].correct}/10`,
+                th: `${stats["Thông hiểu"].correct}/6`,
+                vd: `${stats["Vận dụng"].correct}/4`
+            };
+
+            const records = getStudentRecords();
+            records.push(record);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+            updateRecordCountBadge();
+
+            // Nếu giáo viên đã cấu hình Google Apps Script Webhook, gửi dữ liệu trực tiếp
+            const webhookUrl = localStorage.getItem(WEBHOOK_KEY);
+            const syncBanner = document.getElementById('sync-status-banner');
+            if (webhookUrl && webhookUrl.startsWith('https://')) {
+                syncBanner.innerHTML = `<i class="fa-solid fa-spinner fa-spin text-indigo-600"></i> <span>Đang gửi kết quả lên Google Sheet của Thầy Bùi Đức Mạnh...</span>`;
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(record)
+                }).then(() => {
+                    syncBanner.innerHTML = `<i class="fa-solid fa-cloud-arrow-up text-emerald-600"></i> <span>Đã đồng bộ tự động lên Google Sheet & cập nhật Bảng xếp hạng!</span>`;
+                }).catch(() => {
+                    syncBanner.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600"></i> <span>Đã lưu vào Bảng xếp hạng trên máy!</span>`;
+                });
+            } else {
+                syncBanner.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600"></i> <span>Đã cập nhật vào Bảng xếp hạng lớp (${records.length} học sinh)!</span>`;
+            }
+        }
+
+        function renderResultRankingTable() {
+            const sorted = getSortedRecords();
+            const tbody = document.getElementById('result-ranking-tbody');
+            if (!tbody) return;
+
+            tbody.innerHTML = sorted.map((r, index) => {
+                const isCurrent = (r.name === currentStudentName && r.durationSec === elapsedSeconds && r.score === score);
+                const rowClass = isCurrent ? "bg-amber-100/70 text-indigo-950" : "hover:bg-slate-50";
+                return `
+                    <tr class="${rowClass}">
+                        <td class="p-2.5 text-center">${getRankBadge(index)}</td>
+                        <td class="p-2.5 font-extrabold">${escapeHTML(r.name)} ${isCurrent ? '<span class="text-[11px] bg-indigo-600 text-white px-1.5 py-0.5 rounded ml-1">Vừa xong</span>' : ''}</td>
+                        <td class="p-2.5 text-slate-600">${escapeHTML(r.className)}</td>
+                        <td class="p-2.5 text-center font-black text-emerald-700">${r.correctText}</td>
+                        <td class="p-2.5 text-center font-extrabold text-sky-700">${r.durationText || '--:--'}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function openLeaderboardModal() {
+            renderLeaderboardTable();
+            document.getElementById('leaderboard-modal').classList.remove('hidden');
+        }
+
+        function closeLeaderboardModal() {
+            document.getElementById('leaderboard-modal').classList.add('hidden');
+        }
+
+        function renderLeaderboardTable() {
+            const records = getSortedRecords();
+            const tbody = document.getElementById('leaderboard-tbody');
+            if (records.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-400 font-bold">Chưa có học sinh nào hoàn thành bài thi. Hãy nhập tên học sinh và bắt đầu làm bài nhé!</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = records.map((r, index) => `
+                <tr class="hover:bg-indigo-50/50 transition ${index < 3 ? 'bg-amber-50/40' : ''}">
+                    <td class="p-3 text-center">${getRankBadge(index)}</td>
+                    <td class="p-3 font-extrabold text-indigo-950">${escapeHTML(r.name)}</td>
+                    <td class="p-3 font-bold text-slate-600">${escapeHTML(r.className)}</td>
+                    <td class="p-3 text-center font-black text-emerald-700">${r.correctText}</td>
+                    <td class="p-3 text-center font-extrabold text-sky-700">${r.durationText || '--:--'}</td>
+                    <td class="p-3 text-center text-xs text-slate-500 hidden sm:table-cell">${r.nb} | ${r.th} | ${r.vd}</td>
+                    <td class="p-3 text-xs text-slate-400 hidden md:table-cell">${r.time}</td>
+                </tr>
+            `).join('');
+        }
+
+        function copyZaloReport(fromModal = false) {
+            const sorted = getSortedRecords();
+            if (sorted.length === 0) {
+                showToast("Chưa có dữ liệu học sinh để tạo báo cáo!");
+                return;
+            }
+
+            const today = new Date().toLocaleDateString('vi-VN');
+            let report = `🏆 BẢNG VÀNG ÔN TẬP 7 HẰNG ĐẲNG THỨC (TOÁN 8) 🏆\n`;
+            report += `👨‍🏫 Giáo viên hướng dẫn: Thầy Bùi Đức Mạnh\n`;
+            report += `📅 Ngày: ${today} | Sĩ số tham gia: ${sorted.length} em\n`;
+            report += `----------------------------------------\n`;
+
+            sorted.forEach((r, idx) => {
+                const medal = idx === 0 ? "🥇 Hạng 1:" : idx === 1 ? "🥈 Hạng 2:" : idx === 2 ? "🥉 Hạng 3:" : `${idx + 1}.`;
+                report += `${medal} ${r.name} (${r.className}) — Đúng ${r.correctText} câu (Thời gian: ${r.durationText || '--:--'})\n`;
+            });
+
+            report += `----------------------------------------\n`;
+            report += `👏 Thầy khen ngợi tinh thần học tập của các em! Phụ huynh cùng động viên các con ôn bài nhé!`;
+
+            const tempArea = document.createElement("textarea");
+            tempArea.value = report;
+            document.body.appendChild(tempArea);
+            tempArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempArea);
+
+            if (fromModal) {
+                showToast("✅ Đã copy Bảng Vàng! Thầy mở nhóm Zalo Phụ huynh và bấm Dán (Ctrl+V) để gửi ngay nhé!");
+            } else {
+                const resToast = document.getElementById('result-toast-notify');
+                if (resToast) {
+                    resToast.textContent = "✅ Đã copy Bảng Vàng! Thầy chỉ cần mở nhóm Zalo Phụ huynh và bấm Dán (Ctrl+V) là gửi được ngay!";
+                    resToast.classList.remove('hidden');
+                    setTimeout(() => resToast.classList.add('hidden'), 4500);
+                }
+            }
+        }
+
+        // Xuất ra file CSV chuẩn UTF-8 BOM (mở trực tiếp bằng Google Sheet hoặc Excel không lỗi font tiếng Việt)
+        function exportToCSV() {
+            const records = getSortedRecords();
+            if (records.length === 0) {
+                showToast("Danh sách đang trống, chưa có dữ liệu để xuất!");
+                return;
+            }
+
+            const headers = ["Hạng", "Họ và tên học sinh", "Lớp", "Số câu đúng", "Thời gian làm bài", "Điểm số", "Nhận biết", "Thông hiểu", "Vận dụng", "Thời điểm nộp", "Giáo viên hướng dẫn"];
+            const rows = records.map((r, i) => [
+                i + 1,
+                `"${r.name.replace(/"/g, '""')}"`,
+                `"${r.className.replace(/"/g, '""')}"`,
+                `"${r.correctText}"`,
+                `"${r.durationText || '--:--'}"`,
+                r.score,
+                `"${r.nb}"`,
+                `"${r.th}"`,
+                `"${r.vd}"`,
+                `"${r.time}"`,
+                `"Thầy Bùi Đức Mạnh"`
+            ]);
+
+            const csvContent = "\uFEFF" + [headers.join(","), ...rows.map(e => e.join(","))].join("\n");
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            const dateTag = new Date().toISOString().slice(0, 10);
+            link.setAttribute("href", url);
+            link.setAttribute("download", `Bang_Xep_Hang_7_Hang_Dang_Thuc_${dateTag}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast("✅ Đã tải file CSV! Thầy có thể nhập (Import) trực tiếp file này vào Google Sheet.");
+        }
+
+        // Copy dạng bảng Tab-separated để dán thẳng (Ctrl+V) vào Google Sheet
+        function copyTableForGoogleSheet() {
+            const records = getSortedRecords();
+            if (records.length === 0) {
+                showToast("Danh sách đang trống!");
+                return;
+            }
+            const headers = ["Hạng", "Họ và tên", "Lớp", "Số câu đúng", "Thời gian làm bài", "Điểm số", "Nhận biết", "Thông hiểu", "Vận dụng", "Thời điểm nộp"];
+            const lines = records.map((r, i) => [i + 1, r.name, r.className, r.correctText, r.durationText || '--:--', r.score, r.nb, r.th, r.vd, r.time].join("\t"));
+            const textToCopy = [headers.join("\t"), ...lines].join("\n");
+
+            const tempArea = document.createElement("textarea");
+            tempArea.value = textToCopy;
+            document.body.appendChild(tempArea);
+            tempArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempArea);
+
+            showToast("✅ Đã copy! Thầy mở Google Sheet và bấm Ctrl+V là dữ liệu tự động chia cột ngay.");
+        }
+
+        function clearStudentRecords() {
+            const records = getStudentRecords();
+            if (records.length === 0) return;
+            // Không dùng confirm() theo quy định, dùng cơ chế bấm 2 lần xác nhận trên nút
+            const btn = event.currentTarget;
+            if (!btn.dataset.confirming) {
+                btn.dataset.confirming = "true";
+                btn.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Bấm lần nữa để xóa hết`;
+                setTimeout(() => {
+                    delete btn.dataset.confirming;
+                    btn.innerHTML = `<i class="fa-solid fa-trash-can"></i> Xóa danh sách`;
+                }, 3000);
+                return;
+            }
+            localStorage.removeItem(STORAGE_KEY);
+            delete btn.dataset.confirming;
+            btn.innerHTML = `<i class="fa-solid fa-trash-can"></i> Xóa danh sách`;
+            updateRecordCountBadge();
+            renderLeaderboardTable();
+            showToast("🗑️ Đã xóa sạch danh sách học sinh.");
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('export-toast');
+            toast.textContent = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 4000);
+        }
+
+        // Cấu hình Webhook Google Apps Script
+        function openSheetSettingsModal() {
+            document.getElementById('webhook-url-input').value = localStorage.getItem(WEBHOOK_KEY) || "";
+            document.getElementById('webhook-saved-msg').classList.add('hidden');
+            document.getElementById('sheet-settings-modal').classList.remove('hidden');
+        }
+
+        function closeSheetSettingsModal() {
+            document.getElementById('sheet-settings-modal').classList.add('hidden');
+        }
+
+        function saveWebhookUrl() {
+            const val = document.getElementById('webhook-url-input').value.trim();
+            localStorage.setItem(WEBHOOK_KEY, val);
+            const msg = document.getElementById('webhook-saved-msg');
+            msg.classList.remove('hidden');
+            setTimeout(() => msg.classList.add('hidden'), 3000);
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                "'": '&#39;',
+                '"': '&quot;'
+            }[tag]));
+        }
+
+        // Khởi tạo khi tải trang
+        window.onload = function() {
+            updateRecordCountBadge();
+            applyZoom();
+        };
+    </script>
+</body>
+</html>

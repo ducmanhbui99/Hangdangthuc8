@@ -1,0 +1,6 @@
+{
+  "name": "Đấu Trường 7 Hằng Đẳng Thức - Thầy Bùi Đức Mạnh",
+  "description": "Trò chơi ôn tập 7 hằng đẳng thức đáng nhớ Toán lớp 8 theo chiều xuôi và chiều ngược, có phóng to chữ, bảng xếp hạng và đồng bộ Google Sheet.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
